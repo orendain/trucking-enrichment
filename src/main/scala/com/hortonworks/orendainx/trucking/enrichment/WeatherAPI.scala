@@ -12,28 +12,30 @@ object WeatherAPI {
 
 class WeatherAPI {
 
+  // TODO: Use trucking-shared for finding eventType's "normal" string value
+  // TODO: Export random number parameters to config file.
+
   /** Queries the weatherAPI for fog status.
     *
-    * @param eventStatus The status of a driving event (e.g. "normal", "speeding", etc.)
+    * @param eventType The type of a driving event (e.g. "normal", "speeding", etc.)
     * @return true if the weather is foggy, false otherwise
     */
-  def isFoggy(eventStatus: String): Boolean =
-    if (eventStatus == "normal") Random.nextInt(100) < 15 else Random.nextInt(100) < 75
+  def isFoggy(eventType: String): Boolean =
+    if (eventType == "normal") Random.nextInt(100) < 15 else Random.nextInt(100) < 75
 
   /** Queries the weatherAPI for rain status.
     *
-    * @param eventStatus The status of a driving event (e.g. "normal", "speeding", etc.)
+    * @param eventType The type of a driving event (e.g. "normal", "speeding", etc.)
     * @return true if the weather is rainy, false otherwise
     */
-  def isRainy(eventStatus: String): Boolean =
-    if (eventStatus == "normal") Random.nextInt(100) < 15 else Random.nextInt(100) < 60
+  def isRainy(eventType: String): Boolean =
+    if (eventType == "normal") Random.nextInt(100) < 15 else Random.nextInt(100) < 60
 
   /** Queries the weatherAPI for wind status.
     *
-    * @param eventStatus The status of a driving event (e.g. "normal", "speeding", etc.)
+    * @param eventType The type of a driving event (e.g. "normal", "speeding", etc.)
     * @return true if the weather is windy, false otherwise
     */
-  def isWindy(eventStatus: String): Boolean =
-    if (eventStatus == "normal") Random.nextInt(100) < 27 else Random.nextInt(100) < 30
-
+  def isWindy(eventType: String): Boolean =
+    if (eventType == "normal") Random.nextInt(100) < 27 else Random.nextInt(100) < 30
 }
