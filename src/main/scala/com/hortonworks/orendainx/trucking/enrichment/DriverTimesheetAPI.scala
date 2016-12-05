@@ -22,6 +22,7 @@ class DriverTimesheetAPI(datasource: Source) {
 
   private val reader = CSVReader.open(datasource)
   private val values = reader.all()
+  reader.close()
 
   /** Queries the driver timesheet for hours logged.
     *

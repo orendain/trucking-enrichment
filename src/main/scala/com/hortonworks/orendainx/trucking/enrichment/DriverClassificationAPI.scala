@@ -19,6 +19,7 @@ class DriverClassificationAPI(datasource: Source) {
 
   private val reader = CSVReader.open(datasource)
   private val values = reader.all()
+  reader.close()
 
   /** Queries driver classifications for driver certification status.
     *
