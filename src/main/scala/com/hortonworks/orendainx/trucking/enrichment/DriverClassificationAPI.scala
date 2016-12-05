@@ -27,7 +27,7 @@ class DriverClassificationAPI(datasource: Source) {
     * @return true if the driver is certified, false otherwise
     */
   def isCertified(driverId: Int): Boolean =
-    values.collectFirst{ case lst: List[_] if lst.head.toInt == driverId => lst(1) }.exists(_.equalsIgnoreCase("Y"))
+    values.collectFirst { case lst: List[String] if lst.head.toInt == driverId => lst(1) }.exists(_.equalsIgnoreCase("Y"))
 
   /** Queries driver classifications for a wage plan.
     *
@@ -35,5 +35,5 @@ class DriverClassificationAPI(datasource: Source) {
     * @return the driver's wage plan as a string (i.e. "miles" or "hours")
     */
   def wagePlan(driverId: Int): String =
-    values.collectFirst{ case lst: List[_] if lst.head.toInt == driverId => lst(2) }.get
+    values.collectFirst{ case lst: List[String] if lst.head.toInt == driverId => lst(2) }.get
 }
