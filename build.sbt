@@ -7,7 +7,7 @@ organization := "com.hortonworks.orendainx"
 scalaVersion := "2.11.8"
 
 libraryDependencies ++= Seq(
-  "com.hortonworks.orendainx" %% "trucking-shared" % "0.1",
+  "com.hortonworks.orendainx" %% "trucking-shared" % "0.3",
 
   "com.github.tototoshi" %% "scala-csv" % "1.3.4",
   "com.typesafe" % "config" % "1.3.1",
