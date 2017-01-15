@@ -35,5 +35,5 @@ class DriverClassificationAPI(datasource: Source) {
     * @return the driver's wage plan as a string (i.e. "miles" or "hours")
     */
   def wagePlan(driverId: Int): String =
-    values.collectFirst{ case lst: List[String] if lst.head.toInt == driverId => lst(2) }.get
+    values.collectFirst { case lst: List[String] if lst.head.toInt == driverId => lst(2) }.get
 }

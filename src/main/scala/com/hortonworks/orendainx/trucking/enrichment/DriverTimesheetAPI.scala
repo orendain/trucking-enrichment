@@ -1,7 +1,6 @@
 package com.hortonworks.orendainx.trucking.enrichment
 
-import java.sql.Timestamp
-import java.util.Calendar
+import java.util.{Calendar, Date}
 
 import better.files.File
 import com.github.tototoshi.csv.CSVReader
@@ -29,10 +28,11 @@ class DriverTimesheetAPI(datasource: Source) {
     * @param driverId The id of the driver to query for
     * @return the number of hours the given driver has logged
     */
-  def hoursLogged(driverId: Int, timestamp: Timestamp): Int = {
+  def hoursLogged(driverId: Int, eventTime: Long): Int = {
     val cal = Calendar.getInstance()
-    cal.setTime(timestamp)
-    val weekNumber = cal.get(Calendar.DAY_OF_WEEK)
+    cal.setTime(new Date(eventTime))
+    val weekNumber = cal.get(Calendar.WEEK_OF_YEAR)
+
     values.filter(_.head.toInt == driverId).collectFirst{ case lst: List[_] if lst(1).toInt == weekNumber => lst(3).toInt }.get
   }
 
@@ -41,10 +41,10 @@ class DriverTimesheetAPI(datasource: Source) {
     * @param driverId The id of the driver to query for
     * @return the number of miles the given driver has logged
     */
-  def milesLogged(driverId: Int, timestamp: Timestamp): Int = {
+  def milesLogged(driverId: Int, eventTime: Long): Int = {
     val cal = Calendar.getInstance()
-    cal.setTime(timestamp)
-    val weekNumber = cal.get(Calendar.DAY_OF_WEEK)
+    cal.setTime(new Date(eventTime))
+    val weekNumber = cal.get(Calendar.WEEK_OF_YEAR)
     values.filter(_.head.toInt == driverId).collectFirst{ case lst: List[_] if lst(1).toInt == weekNumber => lst(4).toInt }.get
   }
 }
